@@ -13,6 +13,12 @@ class LearnerProgressController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $validated = $request->validate([
+            'course_id' => 'nullable|exists:courses,id',
+            'sort' => 'nullable|in:asc,desc',
+            'view' => 'nullable|in:card,table',
+        ]);
+
         $courses = Course::orderBy('name')->get();
 
         $query = Learner::with(['enrolments.course']);
