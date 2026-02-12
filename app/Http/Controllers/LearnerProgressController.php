@@ -25,6 +25,16 @@ class LearnerProgressController extends Controller
 
         $learners = $query->get();
 
+        if ($request->filled('sort')) {
+            $learners = $learners->sortBy(function ($learner) use ($request) {
+                if ($request->filled('course_id')) {
+                    $enrolment = $learner->enrolments->where('course_id', $request->course_id)->first();
+                    return $enrolment ? (float) $enrolment->progress : 0;
+                }
+                return (float) $learner->enrolments->avg('progress');
+            }, SORT_REGULAR, $request->sort === 'desc')->values();
+        }
+
         return view('learner-progress', [
             'learners' => $learners,
             'courses' => $courses,

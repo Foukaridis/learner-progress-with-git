@@ -40,10 +40,11 @@
                 <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">Learner Progress Dashboard</h1>
                 <p class="mt-2 text-lg text-gray-600">Overview of student performance and course completion.</p>
 
-                <div class="mt-8 flex justify-center">
-                    <form action="{{ route('learner-progress') }}" method="GET" class="w-full max-w-xs">
+                <div class="mt-8 flex justify-center gap-4">
+                    <form action="{{ route('learner-progress') }}" method="GET"
+                        class="flex flex-wrap justify-center gap-4">
                         <select name="course_id" onchange="this.form.submit()"
-                            class="block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4 bg-white/70 backdrop-blur-md">
+                            class="block rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4 bg-white/70 backdrop-blur-md">
                             <option value="">All Courses</option>
                             @foreach($courses as $course)
                                 <option value="{{ $course->id }}" {{ request('course_id') == $course->id ? 'selected' : '' }}>
@@ -51,6 +52,20 @@
                                 </option>
                             @endforeach
                         </select>
+
+                        <select name="sort" onchange="this.form.submit()"
+                            class="block rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4 bg-white/70 backdrop-blur-md">
+                            <option value="">Default Sort</option>
+                            <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Highest Progress
+                            </option>
+                            <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Lowest Progress</option>
+                        </select>
+
+                        @if(request()->anyFilled(['course_id', 'sort']))
+                            <a href="{{ route('learner-progress') }}"
+                                class="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500">Clear
+                                all</a>
+                        @endif
                     </form>
                 </div>
             </header>
