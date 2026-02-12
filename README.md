@@ -3,9 +3,10 @@
 A modern, reactive full-stack Laravel application for tracking and managing learner progress across various courses.
 
 ## Features
-- **Dashboard Overview**: View all learners, their enrolled courses, and completion progress.
-- **Course Filtering**: Filter learners by specific course names to focus on target student groups.
-- **Progress Sorting**: Sort the list by progress percentage (highest/lowest).
+- **Reactive Dashboard**: Powered by Vue.js and Inertia.js for a seamless Single Page Application (SPA) experience.
+- **Dynamic Views**: Toggle between card and table layouts instantly.
+- **Course Filtering**: Filter learners by specific course names with automatic state preservation.
+- **Progress Sorting**: Sort the list by progress percentage (highest/lowest) reactively.
 
 ## Getting Started
 
