@@ -28,3 +28,4 @@ yarn-error.log
 Thumbs.db
 /database/*.sqlite
 /database/*.sqlite-journal
+school_system
