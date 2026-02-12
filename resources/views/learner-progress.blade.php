@@ -39,6 +39,20 @@
             <header class="mb-10 text-center">
                 <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">Learner Progress Dashboard</h1>
                 <p class="mt-2 text-lg text-gray-600">Overview of student performance and course completion.</p>
+
+                <div class="mt-8 flex justify-center">
+                    <form action="{{ route('learner-progress') }}" method="GET" class="w-full max-w-xs">
+                        <select name="course_id" onchange="this.form.submit()"
+                            class="block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 py-3 px-4 bg-white/70 backdrop-blur-md">
+                            <option value="">All Courses</option>
+                            @foreach($courses as $course)
+                                <option value="{{ $course->id }}" {{ request('course_id') == $course->id ? 'selected' : '' }}>
+                                    {{ $course->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
             </header>
 
             <div class="grid gap-6 md:grid-cols-2">
@@ -51,9 +65,11 @@
                             </div>
                             <div>
                                 <h2 class="text-xl font-bold text-gray-900">{{ $learner->firstname }}
-                                    {{ $learner->lastname }}</h2>
+                                    {{ $learner->lastname }}
+                                </h2>
                                 <p class="text-sm text-gray-500">{{ $learner->enrolments->count() }} enrolled
-                                    {{ $learner->enrolments->count() === 1 ? 'course' : 'courses' }}</p>
+                                    {{ $learner->enrolments->count() === 1 ? 'course' : 'courses' }}
+                                </p>
                             </div>
                         </div>
 
