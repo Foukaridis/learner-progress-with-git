@@ -41,9 +41,10 @@ class LearnerProgressController extends Controller
             }, SORT_REGULAR, $request->sort === 'desc')->values();
         }
 
-        return view('learner-progress', [
+        return \Inertia\Inertia::render('LearnerProgress', [
             'learners' => $learners,
             'courses' => $courses,
+            'filters' => $request->only(['course_id', 'sort', 'view']),
         ]);
     }
 }

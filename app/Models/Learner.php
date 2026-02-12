@@ -19,17 +19,12 @@ class Learner extends Model
         'lastname',
     ];
 
-    /**
-     * Get the enrolments for the learner.
-     */
+
     public function enrolments()
     {
         return $this->hasMany(Enrolment::class);
     }
 
-    /**
-     * Get the courses the learner is enrolled in.
-     */
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'enrolments');
