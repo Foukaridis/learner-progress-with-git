@@ -132,10 +132,10 @@
                                                         <div
                                                             class="bg-gray-200 rounded-full h-1 overflow-hidden">
                                                             <div class="h-full rounded-full bg-indigo-500"
-                                                                style="width: {{ $enrolment->progress }}%"></div>
+                                                                style="width: {{ $enrolment->progress ?? 0 }}%"></div>
                                                         </div>
                                                         <span
-                                                            class="text-xs font-bold text-indigo-600 text-right">{{ number_format($enrolment->progress, 0) }}%</span>
+                                                            class="text-xs font-bold {{ $enrolment->progress !== null ? 'text-indigo-600' : 'text-gray-400' }} text-right">{{ $enrolment->progress !== null ? number_format($enrolment->progress, 0) . '%' : 'N/A' }}</span>
                                                     </div>
                                                 @endforeach
                                             </div>
@@ -176,13 +176,13 @@
                                     <div class="bg-gray-50/50 rounded-xl p-4 border border-gray-100/50">
                                         <div class="flex justify-between items-center mb-2">
                                             <span class="font-semibold text-gray-700 text-sm">{{ $enrolment->course->name }}</span>
-                                            <span class="text-sm font-bold text-indigo-600">
-                                                {{ number_format($enrolment->progress, 0) }}%
+                                            <span class="text-sm font-bold {{ $enrolment->progress !== null ? 'text-indigo-600' : 'text-gray-400' }}">
+                                                {{ $enrolment->progress !== null ? number_format($enrolment->progress, 0) . '%' : 'Not started' }}
                                             </span>
                                         </div>
                                         <div class="w-full bg-gray-200 rounded-full h-2 shadow-inner">
                                             <div class="h-full rounded-full bg-gradient-to-r from-indigo-500 to-indigo-600 transition-all duration-500"
-                                                style="width: {{ $enrolment->progress }}%"></div>
+                                                style="width: {{ $enrolment->progress ?? 0 }}%"></div>
                                         </div>
                                     </div>
                                 @endforeach
