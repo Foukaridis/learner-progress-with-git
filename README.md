@@ -19,7 +19,12 @@ Follow these instructions to get the project up and running on your machine.
 
 ### Installation
 
-1. **Clone the repository**.
+1. **Clone the repository and check out the relevant branch - main / vue**:
+   ```bash
+   git clone https://github.com/Foukaridis/learner-progress-with-git.git
+   cd learner-progress-with-git
+   git checkout vue
+   ```
 2. **Install PHP dependencies**:
    ```bash
    composer install
@@ -32,17 +37,18 @@ Follow these instructions to get the project up and running on your machine.
    ```bash
    cp .env.example .env
    ```
-5. **Prepare the database**:
+   Then fill in the database credentials.
+
+5. **Generate application key**:
+   ```bash
+   php artisan key:generate
+   ```
+6. **Prepare the database**:
    The project uses a SQLite database named `school_system` located in the root.
    ```bash
    touch school_system
    php artisan migrate --seed
    ```
-6. **Generate application key**:
-   ```bash
-   php artisan key:generate
-   ```
-
 ### Running the Application
 
 To run the application, you need to start both the PHP server and the Vite development server.
